@@ -12,11 +12,11 @@ public class App {
         // create a list of top 5 things
         // --- TO DO: Change to your own list ---
         String[] top5 = {
-            "1. Coding",
-            "2. Music",
-            "3. Movies",
-            "4. Sports",
-            "5. Travel"
+            "1. Reading",
+            "2. Video Games",
+            "3. Television",
+            "4. Friends",
+            "5. My Dog"
         };
 
          // A JFrame is a window where we can design our UI
@@ -26,12 +26,14 @@ public class App {
 
         // create a Button and a Label
         JButton nextButton = new JButton("Next");
+        JButton backButton = new JButton("Back");
         JLabel outputLabel = new JLabel();
         // --- TO DO: create a back button, format, and add it to the frame ---
 
         // place and size for components
         // setBounds(x position, y position, width, height)
         nextButton.setBounds(100, 200, 100, 50);
+        backButton.setBounds(200, 200, 100, 50);
         outputLabel.setBounds(100,100,200,50);
         outputLabel.setFont(new Font("Arial", Font.PLAIN, 32));
         outputLabel.setForeground(Color.BLUE);
@@ -42,6 +44,7 @@ public class App {
         // add components to JFrame f
         frame.add(outputLabel);
         frame.add(nextButton);
+        frame.add(backButton);
 
         // add event listener for button click
         nextButton.addActionListener(new ActionListener() {
@@ -52,6 +55,14 @@ public class App {
 
         // --- TO DO: add event listener for back button ---
         // --- TO DO: create a getPreviousIndex function, see below ---
+
+        backButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                currentIndex = getPreviousIndex(currentIndex, top5.length);
+                outputLabel.setText(top5[currentIndex]);
+            
+            }
+        });
 
 
         // make the frame visible
@@ -75,11 +86,23 @@ public class App {
 
     // --- TO DO: create a getPreviousIndex function ---
     /**
-     *  find the next index in the list
+     *  find the previous index in the list
      * @param currentIndex
      * @param listLength
      * @return previous index
      */
+
+    public static int getPreviousIndex(int currentIndex, int listLength)
+    {
+        if (currentIndex == 0)
+        {
+            return listLength - 1; //check this one 
+        }
+        else{
+            return currentIndex - 1; 
+        }
+    }
+
     
 }
 
